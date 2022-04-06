@@ -1,0 +1,95 @@
+ 1. 크롬 폰트 해결
+$sudo apt-get install fonts-unfonts-core
+
+2. 시스템 한글 폰트 해결
+Preferences - Raspberry Pi Configuration - Localisation - Set Locale(Lanuage: Ko, Character Set: UTF-8) - Set Timezone(Area: Asia, Location: Seoul) - Set WLAN Country(US United States, 선택해야함 버그임) - OK - Reboot
+
+3. 한글 입력
+$ sudo apt-get install ibus ibus-hangul
+ibus 실행
+입력방식 확인
+단축키 변경
+기본 입력기로 IBus 설정해줌($ im-config -n ibus)
+Set Locale 에서 국가 en으로 바꾸고 UTF-8로 바꿔줘야 함.
+혹시나 스페이스바로 한자씩 밀리는 증상 발생시 ($ sudo apt-get install ibus-gtk ibus-gtk3)
+
+4. cv 문제 해결
+conda update anaconda-navigator
+conda update navigator-updater
+pip install opencv-python
+
+(5. 원격터미널)
+Configuration menu - Interfaces - SSH, VNC Enabled 체크 - Reboot
+네트워크 설정에 커서를 대도 IP 확인가능
+VNC Viewer S/W 설치
+Raspberry VNC Viewer 설치
+
+6. atom 으로 노트북 프로그램 실행시 문제 해결
+opencv
+-> cmd 실행 후 pip install opencv-python
+pillow
+-> cmd 실행 후 pip install pillow
+
+7. No module named 'picamera'
+>>가상환경에 설치 해줘야 함. 독립된 공간
+$python -c "import picamera" 로 확인
+
+8. AttributeError: 'str' object has no attribute 'decode'
+>>한글입력기 해제
+hyp5 버전을 다운그레이드
+$pip install h5py==2.10.0
+해결
+
+9. 정확도 높이기
+>보다 높은 정확도의 모델을 실행하려 했지만 되지 않았고 텐서플로우의 버전을 업해서 해결함.
+>초기 환경 구축 코드 이용 텐서플로우2.4.0으로 가상환경에 설치
+>advanced MNIST 모델을 통해 정확도 올리기
+
+10. 라즈베리파이 cv pygame 설치 후 에러
+>강좌대로 sudo apt-get install python-pygame 해봤지만 계속 모듈 못 찾는다고 에러
+$python3 -m pip install -U pygame
+후 무사 설치 확인
+$python3 -m pip install pygame==2.0.0
+도 정상 설치
+
+11. pygame mixer 사용 불가
+$sudo apt-get install git curl libsdl2-mixer-2.0-0 libsdl2-image-2.0-0 libsdl2-2.0-0 libsdl2-ttf-2.0-0
+정상설치 확인
+
+12. No module name 'tflite_runtime'
+>>안내문 보고 설치함
+
+13. DL41 TFLITE 
+너무 빠른 인식탓에 안 자도 잔다고 인식
+>>closed limit 를 7-> 10으로 변경
+
+
+14. SyntaxError: EOL while scanning string literal
+따옴표를 제대로 여닫지 않았거나 불필요한 따옴표로 인해 발생하는 구문 에러
+드롭박스 토큰을 입력하는 곳에 'your token'으로 표기되어 있어 그 안에 입력했다가 따옴표를 지우고 해결함.
+
+15. No module named 'firebase_admin'
+$sudo pip install firebase-admin
+
+16. 강의에서 cmake 모듈에 관해 제대로 설명x
+ERROR: Could not build wheels for opencv-python which use PEP 517 and cannot be installed directly
+(cv)$pip install --upgrade pip setuptools wheel
+(cv)$pip install cmake==3.15.3
+정상 설치 확인
+
+17. 강사는 맥북으로만 시범을 보이는데 윈도우 환경에서의 설명은 코드 보여주고 말로만 넘김. 학습하기에 매우 어려웠음.
+
+18. firebase는 힘들지만 따라서 할 수는 있었고, 
+sendgrid 상세 하드코딩에서 제대로 된 설명 없이 복사 붙여넣기 하고 화면도 보기 힘들어서 에러가 나는 등 실행이 안됨. 
+앞부분 인공지능과 파이썬 환경, 인식 프로그램에 대한 설명은 길게 했으나 정작 구동에 필요한 sendgrid는 설명을 충분히 해주지 않고 빨리 지나가서 따라가기 힘듬.
+
+19. 질문을 해도 2일 이상 소요되고 이또한 확정이 아니기 때문에 수강 기간이 턱없이 짧음.
+
+
+#1. [Sendgrid API Key]
+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
+
+gs://deeplearning-334c2.appspot.com
+
+#2. [Dropbox access token] 
+sl.Az_P6c5AJhj7wRAkCOVliVl6rmxEJAPYXCOWJNzWExarcAlWXaKXDSxgFX7Jz2q6kdNsFDzA_fY9kukp4UWRwiWlhvuwRQyi1lWA1lgNpHLs6avnBBjzGXtz_6ItCXZwLn5m4Zo
